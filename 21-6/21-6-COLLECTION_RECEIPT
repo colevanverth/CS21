@@ -1,0 +1,10 @@
+COLLECTED FILE LISTING
+total 36
+drwxrwxr-x 2 cverth cverth 4096 Apr 25 01:37  
+-rw-rw-r-- 1 cverth cverth 1592 Apr 28 01:00 disjoint_set.cpp
+-rw-rw-r-- 1 cverth cverth 2239 Apr 28 00:56 disjoint_set.h
+-rw-rw-r-- 1 cverth cverth  940 Apr 27 19:27 main.cpp
+-rw-rw-r-- 1 cverth cverth  294 Apr 25 04:53 makefile
+-rw-rw-r-- 1 cverth cverth 3242 Apr 28 00:59 maze.cpp
+-rw-rw-r-- 1 cverth cverth 5239 Apr 28 00:58 maze.h
+-rw-rw-r-- 1 cverth cverth  217 Apr 28 00:54 README

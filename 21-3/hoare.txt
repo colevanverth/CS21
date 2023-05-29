@@ -1,0 +1,43 @@
+/*
+* @author Cole Van Verth
+* @pengo cverth
+* @email colevanverth@gmail.com
+* @file hoare.txt
+* @assignment 3: Quicksort
+*/
+
+Using an algorithim that mimicked a binary search, I calculated that the 
+minimum array size that `hoarePartition` should perform a `medianOfThree`
+calculation to be 12.
+
+First, I created two data sets both with a size of 1,000,000: 
+   1. The first was filled with scrambled numbers from 1 to 1,000,000 (no 
+   duplicate numbers). 
+   2. The second was filled with numbers 1 to 1,000,000 in sorted order. 
+
+The first set was designed to trigger a O(nlg(n)) execution time (best case for
+quicksort) and the second set was designed to trigger a O(n^2) execution time 
+(the worst case for quicksort). Comparing the two extreme possibilities 
+provided insight on what constant I should choose.  
+
+Next, I created a script that called `hoareQuicksort` with both data sets and
+automatically optimized the constant:
+   1. `hoareConstant` is intialized to 1000.
+   2. A `divisor` variable (initialized to 1000) halves itself. 
+   3. `hoareQuicksort` is timed with:
+      i. `hoareConstant` -= `divisor`, for both sets
+      ii. `hoareConstant` += `divisor`, for both sets
+   4. The total execution time for steps 3i and 3ii are compared using the
+   std::chrono library.
+   5. The `hoareConstant` is adjusted by either adding or substracting the 
+   `divisor`, depending on which execution time was shorter.
+   5. The script repeats itself until `divisor` is equal to zero.
+
+I did take a special precaution when executing this script compared to the
+`lomutoPartition` tests. I noticed that when testing for the hoare the output
+was highly variable compared to lomuto (which produced the same output nearly
+every time). Thus, before comparing the execution times of adding or
+subtracting the divisor to the constant value, I summed the times over 100
+iterations. This made the output much more consistent.
+
+When executing the script on my local machine it outputted 12.

@@ -1,0 +1,36 @@
+/*
+* @author Cole Van Verth
+* @pengo cverth
+* @email colevanverth@gmail.com
+* @file lomuto.txt
+* @assignment 3: Quicksort
+*/
+
+Using an algorithim that mimicked a binary search, I calculated that the 
+minimum array size that `lomutoPartition` should perform a `medianOfThree`
+calculation to be 11.
+
+First, I created two data sets both with a size of 1,000,000: 
+   1. The first was filled with scrambled numbers from 1 to 1,000,000 (no 
+   duplicate numbers). 
+   2. The second was filled with numbers 1 to 1,000,000 in sorted order. 
+
+The first set was designed to trigger a O(nlg(n)) execution time (best case for
+quicksort) and the second set was designed to trigger a O(n^2) execution time 
+(the worst case for quicksort). Comparing the two extreme possibilities 
+provided insight on what constant I should choose.  
+
+Next, I created a script that called `lomutoQuicksort` with both data sets and
+automatically optimized the constant:
+   1. `lomutoConstant` is intialized to 1000.
+   2. A `divisor` variable (initialized to 1000) halves itself. 
+   3. `lomutoQuicksort` is timed with:
+      i. `lomutoConstant` -= `divisor`, for both sets
+      ii. `lomutoConstant` += `divisor`, for both sets
+   4. The total execution time for steps 3i and 3ii are compared using the
+   std::chrono library.
+   5. The `lomutoConstant` is adjusted by either adding or substracting the 
+   `divisor`, depending on which execution time was shorter.
+   5. The script repeats itself until `divisor` is equal to zero.
+
+When executing the script on my local machine it outputted 11.
